@@ -7,6 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Matches {
@@ -16,10 +18,14 @@ public class Matches {
 	private int match_Id;
 	
 //	@Column(name = "lost_Item", nullable = false)
-//	private LostFounditems lost_Item;
-//	
+	@ManyToOne
+	@JoinColumn(name = "lost_Item")
+	private LostFounditems lost_Item;
+	
 //	@Column(name = "found_Item", nullable = false)
-//	private LostFounditems found_Item;
+	@ManyToOne
+	@JoinColumn(name = "found_Item")
+	private LostFounditems found_Item;
 	
 	@Column(name = "match_score" , nullable = false)
 	private double match_score;
@@ -47,12 +53,7 @@ public class Matches {
 		this.created_At = LocalDateTime.now();
 	}
 
-//	public Matches(int match_Id, double match_score, String status) {
-//		super();
-//		this.match_Id = match_Id;
-//		this.match_score = match_score;
-//		this.status = status;
-//	}
+
 
 	public int getMatch_Id() {
 		return match_Id;
@@ -62,21 +63,21 @@ public class Matches {
 		this.match_Id = match_Id;
 	}
 
-//	public LostFounditems getLost_Item() {
-//		return lost_Item;
-//	}
-//
-//	public void setLost_Item(LostFounditems lost_Item) {
-//		this.lost_Item = lost_Item;
-//	}
-//
-//	public LostFounditems getFound_Item() {
-//		return found_Item;
-//	}
-//
-//	public void setFound_Item(LostFounditems found_Item) {
-//		this.found_Item = found_Item;
-//	}
+	public LostFounditems getLost_Item() {
+		return lost_Item;
+	}
+
+	public void setLost_Item(LostFounditems lost_Item) {
+		this.lost_Item = lost_Item;
+	}
+
+	public LostFounditems getFound_Item() {
+		return found_Item;
+	}
+
+	public void setFound_Item(LostFounditems found_Item) {
+		this.found_Item = found_Item;
+	}
 
 	public double getMatch_score() {
 		return match_score;

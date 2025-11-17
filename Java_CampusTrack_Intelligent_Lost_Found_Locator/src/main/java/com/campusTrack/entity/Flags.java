@@ -7,6 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Flags {
@@ -16,10 +18,14 @@ public class Flags {
 	private int FlagsId;
 	
 //	@Column(name = "lostFound_itemId", nullable = false)
-//	private LostFounditems itemId;
-//	
+	@ManyToOne
+	@JoinColumn(name = "lostFound_itemId")
+	private LostFounditems items;
+	
 //	@Column(name = "reportedUsers_Id", nullable = false)
-//	private Users reportedBy;
+	@ManyToOne
+	@JoinColumn(name = "reportedUsers_Id")
+	private Users reportedBy;
 	
 	@Column(columnDefinition = "Text NOT NULL", nullable = false)
 	private String reason;
@@ -46,12 +52,7 @@ public class Flags {
 		this.created_At = LocalDateTime.now();
 	}
 
-//	public Flags(int flagsId, String reason, boolean reviewed) {
-//		super();
-//		FlagsId = flagsId;
-//		this.reason = reason;
-//		this.reviewed = reviewed;
-//	}
+
 
 	public int getFlagsId() {
 		return FlagsId;
@@ -61,21 +62,21 @@ public class Flags {
 		FlagsId = flagsId;
 	}
 
-//	public LostFounditems getItemId() {
-//		return itemId;
-//	}
-//
-//	public void setItemId(LostFounditems itemId) {
-//		this.itemId = itemId;
-//	}
-//
-//	public Users getReportedBy() {
-//		return reportedBy;
-//	}
-//
-//	public void setReportedBy(Users reportedBy) {
-//		this.reportedBy = reportedBy;
-//	}
+	public LostFounditems getItemId() {
+		return items;
+	}
+
+	public void setItemId(LostFounditems itemId) {
+		this.items = itemId;
+	}
+
+	public Users getReportedBy() {
+		return reportedBy;
+	}
+
+	public void setReportedBy(Users reportedBy) {
+		this.reportedBy = reportedBy;
+	}
 
 	public String getReason() {
 		return reason;

@@ -7,6 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Messages {
@@ -16,10 +18,14 @@ public class Messages {
 	private int messagesId;
 	
 //	@Column(name = "sendUser_id", nullable = false)  
-//	private Users sender_id;
-//	
+	@ManyToOne
+	@JoinColumn(name = "sendUser_id")
+	private Users sender;
+	
 //	@Column(name = "receiveUser_id", nullable = false)  
-//	private Users receiver_id;
+	@ManyToOne
+	@JoinColumn(name = "receiveUser_id")
+	private Users receiver;
 	
 	@Column(name = "context", columnDefinition = "TEXT NOT NULL")
 	private String context;
@@ -47,12 +53,7 @@ public class Messages {
 		this.is_read = is_read;
 	}
 
-//	public Messages(int id, String context, boolean is_read) {
-//		super();
-//		this.messagesId = id;
-//		this.context = context;
-//		this.is_read = is_read;
-//	}
+
 
 	public int getId() {
 		return messagesId;
@@ -62,21 +63,21 @@ public class Messages {
 		this.messagesId = id;
 	}
 
-//	public Users getSender_id() {
-//		return sender_id;
-//	}
-//
-//	public void setSender_id(Users sender_id) {
-//		this.sender_id = sender_id;
-//	}
-//
-//	public Users getReceiver_id() {
-//		return receiver_id;
-//	}
-//
-//	public void setReceiver_id(Users receiver_id) {
-//		this.receiver_id = receiver_id;
-//	}
+	public Users getSender_id() {
+		return sender;
+	}
+
+	public void setSender_id(Users sender_id) {
+		this.sender = sender_id;
+	}
+
+	public Users getReceiver_id() {
+		return receiver;
+	}
+
+	public void setReceiver_id(Users receiver_id) {
+		this.receiver = receiver_id;
+	}
 
 	public String getContext() {
 		return context;

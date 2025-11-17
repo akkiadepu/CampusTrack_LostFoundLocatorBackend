@@ -2,18 +2,21 @@ package com.campusTrack.entity;
 
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 
 @Entity
-//@Table(name = "Lost_Items")
 public class LostFounditems {
 	
 	@Id
@@ -54,7 +57,19 @@ public class LostFounditems {
 	private LocalDateTime created_at;
 	
 //	@Column(name = "Users_id", nullable = false)
-//	private Users users;
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private Users users;
+	
+	@OneToMany(mappedBy = "lost_Item")
+	private List<Matches> lostMatches;
+	
+	@OneToMany(mappedBy = "found_Item")
+	private List<Matches> foundMatches;
+	
+	@OneToMany(mappedBy = "items")
+	private List<Flags> flags;
+	
 
 	public LostFounditems() {
 		super();
@@ -64,7 +79,7 @@ public class LostFounditems {
 	public LostFounditems(int item_Id, String type, String title, String description, Date date_reported,
 			String location, String image_url, String category, String tags, String status
 			) {
-//		Users users
+
 		super();
 		this.item_Id = item_Id;
 		this.type = type;
@@ -77,24 +92,10 @@ public class LostFounditems {
 		this.tags = tags;
 		this.status = status;
 		this.created_at = LocalDateTime.now();
-//		this.users = users;
+
 	}
 
-//	public LostFounditems(int item_Id, String type, String title, String description, Date date_reported,
-//			String location, String image_url, String category, String tags, String status) {
-//		super();
-//		this.item_Id = item_Id;
-//		this.type = type;
-//		this.title = title;
-//		this.description = description;
-//		this.date_reported = date_reported;
-//		this.location = location;
-//		this.image_url = image_url;
-//		this.category = category;
-//		this.tags = tags;
-//		this.status = status;
-//		this.created_at = LocalDateTime.now();
-//	}
+
 
 	public int getItem_Id() {
 		return item_Id;
@@ -184,13 +185,39 @@ public class LostFounditems {
 		this.created_at = created_at;
 	}
 
-//	public Users getUsers() {
-//		return users;
-//	}
-//
-//	public void setUsers(Users users) {
-//		this.users = users;
-//	}
+	public Users getUsers() {
+		return users;
+	}
+
+	public void setUsers(Users users) {
+		this.users = users;
+	}
+	
+	
+
+	public List<Matches> getLostMatches() {
+		return lostMatches;
+	}
+
+	public void setLostMatches(List<Matches> lostMatches) {
+		this.lostMatches = lostMatches;
+	}
+
+	public List<Matches> getFoundMatches() {
+		return foundMatches;
+	}
+
+	public void setFoundMatches(List<Matches> foundMatches) {
+		this.foundMatches = foundMatches;
+	}
+
+	public List<Flags> getFlags() {
+		return flags;
+	}
+
+	public void setFlags(List<Flags> flags) {
+		this.flags = flags;
+	}
 
 	@Override
 	public String toString() {
