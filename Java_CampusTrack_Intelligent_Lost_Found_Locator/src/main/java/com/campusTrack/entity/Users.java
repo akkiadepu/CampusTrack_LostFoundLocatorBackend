@@ -1,7 +1,13 @@
 package com.campusTrack.entity;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -13,7 +19,7 @@ import jakarta.persistence.Table;
 
 @Entity
 //@Table(name = "User")
-public class Users {
+public class Users extends User {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,51 +37,50 @@ public class Users {
 	@Column(name = "userRole", nullable = false)
 	private String role;
 
-	@Column(name = "userVerification", nullable = false)
-	private boolean verified;
+//	@Column(name = "userVerification", nullable = false)
+//	private boolean verified;
+//
+//	@Column(name = "created_At", nullable = false)
+//	private LocalDateTime created_At;
 
-	@Column(name = "created_At", nullable = false)
-	private LocalDateTime created_At;
-	
 	@OneToMany(mappedBy = "users")
 	private List<LostFounditems> items;
-	
+
 	@OneToMany(mappedBy = "sender")
 	private List<Messages> sentMessages;
-	
+
 	@OneToMany(mappedBy = "receiver")
 	private List<Messages> receivedMessages;
-	
+
 	@OneToMany(mappedBy = "reportedBy")
 	private List<Flags> reportedBy;
-	
 
 	public Users() {
-		super();
+		super("abc", "pqr", new ArrayList<>());
 		// TODO Auto-generated constructor stub
 	}
 
-	public Users(int users_id, String name, String email, String password, String role, boolean verified,
-			LocalDateTime created_At) {
-		super();
-		User_id = users_id;
-		this.name = name;
-		this.email = email;
-		this.password = password;
-		this.role = role;
-		this.verified = verified;
-		this.created_At = created_At;
+	public Users(String name, String password, Collection<? extends GrantedAuthority> authorities, String name2,
+			String personalname2, String email2, String password2, String role2) {
+		super(name,password,authorities);
+
+		this.name = name2;
+		this.email = email2;
+		this.password = password2;
+		this.role = role2;
+//		this.verified = verified;
+//		this.created_At = created_At;
 	}
 
-	public Users(int users_id, String name, String email, String password, String role, boolean verified) {
-		super();
-		User_id = users_id;
-		this.name = name;
-		this.email = email;
-		this.password = password;
-		this.role = role;
-		this.verified = verified;
-	}
+//	public Users(int users_id, String name, String email, String password, String role, boolean verified) {
+//		super();
+//		User_id = users_id;
+//		this.name = name;
+//		this.email = email;
+//		this.password = password;
+//		this.role = role;
+//		this.verified = verified;
+//	}
 
 	public int getUsers_id() {
 		return User_id;
@@ -117,23 +122,21 @@ public class Users {
 		this.role = role;
 	}
 
-	public boolean isVerified() {
-		return verified;
-	}
-
-	public void setVerified(boolean verified) {
-		this.verified = verified;
-	}
-
-	public LocalDateTime getCreated_At() {
-		return created_At;
-	}
-
-	public void setCreated_At(LocalDateTime created_At) {
-		this.created_At = created_At;
-	}
-	
-	
+//	public boolean isVerified() {
+//		return verified;
+//	}
+//
+//	public void setVerified(boolean verified) {
+//		this.verified = verified;
+//	}
+//
+//	public LocalDateTime getCreated_At() {
+//		return created_At;
+//	}
+//
+//	public void setCreated_At(LocalDateTime created_At) {
+//		this.created_At = created_At;
+//	}
 
 	public int getUser_id() {
 		return User_id;
@@ -175,10 +178,10 @@ public class Users {
 		this.reportedBy = reportedBy;
 	}
 
-	@Override
-	public String toString() {
-		return "Users [Users_id=" + User_id + ", name=" + name + ", email=" + email + ", password=" + password
-				+ ", role=" + role + ", verified=" + verified + ", created_At=" + created_At + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "Users [Users_id=" + User_id + ", name=" + name + ", email=" + email + ", password=" + password
+//				+ ", role=" + role + ", verified=" + verified + ", created_At=" + created_At + "]";
+//	}
 
 }
