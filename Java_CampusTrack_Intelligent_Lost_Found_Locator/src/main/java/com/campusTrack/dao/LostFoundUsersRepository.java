@@ -6,7 +6,8 @@ import org.springframework.stereotype.Repository;
 import com.campusTrack.entity.Users;
 
 @Repository
-public interface LostFoundUsersRepository extends JpaRepository<Users, Integer> {
+public interface LostFoundUsersRepository extends JpaRepository<Users, String> {
 	
+	  Users findByUsername(String username);
 
 }
