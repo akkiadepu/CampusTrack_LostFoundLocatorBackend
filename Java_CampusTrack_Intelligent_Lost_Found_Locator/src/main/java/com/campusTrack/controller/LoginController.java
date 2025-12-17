@@ -1,5 +1,7 @@
 package com.campusTrack.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -28,7 +30,7 @@ public class LoginController {
 
 	@Autowired
 	private EncoderConfig config;
-	
+
 //	@Autowired
 //	private PasswordEncoder passwordEncoder;
 
@@ -42,8 +44,6 @@ public class LoginController {
 		user.setPassword(encodedPassword);
 		service.save(user);
 	}
-	
-	
 
 	@GetMapping("/login/{userId}/{password}")
 	public String validateUser(@PathVariable String userId, @PathVariable String password) {
@@ -62,7 +62,7 @@ public class LoginController {
 	public Users getUserDetails() {
 		return service.getUser();
 	}
-	
+
 	@GetMapping("/user")
 	public String getUserId() {
 		return service.getUser_id();
@@ -72,26 +72,48 @@ public class LoginController {
 	public String getRole() {
 		return service.getRole();
 	}
-	
-	
-	@PostMapping("/logout")
-	public ResponseEntity<String> logout(HttpServletRequest request,
-	                                     HttpServletResponse response) {
 
-	    SecurityContextHolder.clearContext();
-
-	    HttpSession session = request.getSession(false);
-	    if (session != null) {
-	        session.invalidate();
-	    }
-
-	    Cookie cookie = new Cookie("JSESSIONID", null);
-	    cookie.setPath("/");
-	    cookie.setMaxAge(0);
-	    response.addCookie(cookie);
-
-	    return ResponseEntity.ok("Logout successful");
+	@GetMapping("/student")
+	public List<Users> getAllStudents() {
+		return service.getAllStudents();
 	}
 
+	@GetMapping("/student/{username}")
+	public List<Users> getStudentsByUserName(@PathVariable String username) {
+		return service.getStudentsByUserName(username);
+
+	}
+
+	@PutMapping("/student/{username}")
+	public ResponseEntity<String> updateStudent(@PathVariable String username, @RequestBody Users user) {
+
+		boolean updated = service.updateStudent(username, user.getEmail(), user.getPassword(), user.getPersonalName());
+
+		return updated ? ResponseEntity.ok("Student details updated successfully") : ResponseEntity.notFound().build();
+	}
 	
+
+	@DeleteMapping("/login/{username}")
+	public void deleteUser(@PathVariable String username) {
+		service.deleteUser(username);
+	}
+
+	@PostMapping("/logout")
+	public ResponseEntity<String> logout(HttpServletRequest request, HttpServletResponse response) {
+
+		SecurityContextHolder.clearContext();
+
+		HttpSession session = request.getSession(false);
+		if (session != null) {
+			session.invalidate();
+		}
+
+		Cookie cookie = new Cookie("JSESSIONID", null);
+		cookie.setPath("/");
+		cookie.setMaxAge(0);
+		response.addCookie(cookie);
+
+		return ResponseEntity.ok("Logout successful");
+	}
+
 }

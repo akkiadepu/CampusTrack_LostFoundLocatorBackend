@@ -20,7 +20,6 @@ import com.campusTrack.service.LostFoundUsersService;
 
 @Configuration
 @EnableMethodSecurity
-
 public class SystemConfig {
 	@Autowired
 	private EncoderConfig encoderConfig;
@@ -50,6 +49,7 @@ public class SystemConfig {
 	        .authorizeHttpRequests(auth -> auth
 	            .requestMatchers("/lostfound/login/**").permitAll()
 	            .requestMatchers("/lostfound/logout").permitAll()
+	            .requestMatchers("/lostfound/student/**").permitAll()
 	            .requestMatchers("/lostfound/*").permitAll()
 	            .anyRequest().authenticated()
 	        )
