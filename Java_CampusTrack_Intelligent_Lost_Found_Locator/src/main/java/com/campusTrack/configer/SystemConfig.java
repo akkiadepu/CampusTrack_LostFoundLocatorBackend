@@ -50,6 +50,7 @@ public class SystemConfig {
 	            .requestMatchers("/lostfound/login/**").permitAll()
 	            .requestMatchers("/lostfound/logout").permitAll()
 	            .requestMatchers("/lostfound/student/**").permitAll()
+	            .requestMatchers("/lostfound/ws/**").permitAll()
 	            .requestMatchers("/lostfound/*").permitAll()
 	            .anyRequest().authenticated()
 	        )
@@ -70,6 +71,7 @@ public class SystemConfig {
 	public CorsConfigurationSource corsConfigurationSource() {
 	    CorsConfiguration config = new CorsConfiguration();
 	    config.setAllowedOrigins(List.of("http://localhost:5173"));
+	    config.setAllowedOrigins(List.of("http://localhost:3000"));
 	    config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
 	    config.setAllowedHeaders(List.of("*"));
 	    config.setAllowCredentials(true);

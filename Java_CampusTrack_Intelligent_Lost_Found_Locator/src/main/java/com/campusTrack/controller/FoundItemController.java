@@ -21,7 +21,7 @@ import com.campusTrack.service.LostFoundUsersService;
 
 @RestController
 @RequestMapping("/lostfound/")
-@CrossOrigin(origins = "http://localhost:5173", allowCredentials = "true")
+@CrossOrigin(origins = "http://localhost:3000/", allowCredentials = "true")
 public class FoundItemController {
 	
 	@Autowired

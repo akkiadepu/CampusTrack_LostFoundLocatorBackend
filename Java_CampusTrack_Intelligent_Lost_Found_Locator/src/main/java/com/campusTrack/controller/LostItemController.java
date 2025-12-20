@@ -25,7 +25,7 @@ import com.campusTrack.service.LostItemService;
 
 @RestController
 @RequestMapping("/lostfound/")
-@CrossOrigin(origins = "http://localhost:5173", allowCredentials = "true")  // corrected "htts" → "http"
+@CrossOrigin(origins = "http://localhost:3000/", allowCredentials = "true")  // corrected "htts" → "http"
 public class LostItemController {
 
     @Autowired

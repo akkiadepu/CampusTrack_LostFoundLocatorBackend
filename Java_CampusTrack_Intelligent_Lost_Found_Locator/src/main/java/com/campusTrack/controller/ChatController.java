@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.messaging.simp.stomp.StompHeaderAccessor;
@@ -20,6 +21,7 @@ import com.campusTrack.entity.ChatMessage;
 @RequestMapping("/lostfound/")
 public class ChatController {
 
+	@Autowired
 	private SimpMessagingTemplate messagingTemplate;
 	
 	private final Set<String> onlineUsers = Collections.synchronizedSet(new HashSet<>());
