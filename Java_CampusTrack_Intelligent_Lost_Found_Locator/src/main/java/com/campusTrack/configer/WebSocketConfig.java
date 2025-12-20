@@ -14,16 +14,13 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 	public void registerStompEndpoints(StompEndpointRegistry registry) {
 		registry.addEndpoint("/lostfound/ws").setAllowedOriginPatterns("*").withSockJS();
 		
-		// TODO Auto-generated method stub
-//		WebSocketMessageBrokerConfigurer.super.registerStompEndpoints(registry);
 	}
 
 	@Override
 	public void configureMessageBroker(MessageBrokerRegistry registry) {
 		registry.enableSimpleBroker("/topic");
 		registry.setApplicationDestinationPrefixes("/app");
-		// TODO Auto-generated method stub
-//		WebSocketMessageBrokerConfigurer.super.configureMessageBroker(registry);
+		
 	}
 	
 	
