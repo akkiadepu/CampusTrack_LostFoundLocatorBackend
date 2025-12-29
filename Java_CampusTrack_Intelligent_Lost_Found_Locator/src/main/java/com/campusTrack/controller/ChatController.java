@@ -52,30 +52,30 @@ public class ChatController {
 	}
 	
 	
-//	public void removeUser(String sessionId) {
-//		String username = sessionIdToUser.get(sessionId);
-//		if(username != null) {
-//			onlineUsers.remove(username);
-//			sessionIdToUser.remove(sessionId);
-//			broadcastUserList();
-//		}
-//	}
-	
 	public void removeUser(String sessionId) {
 		String username = sessionIdToUser.get(sessionId);
-		if (username != null) {
+		if(username != null) {
+			onlineUsers.remove(username);
 			sessionIdToUser.remove(sessionId);
-
-			// check if same user has another active session
-			boolean stillOnline = sessionIdToUser.containsValue(username);
-
-			if (!stillOnline) {
-				onlineUsers.remove(username);
-			}
-
 			broadcastUserList();
 		}
 	}
+	
+//	public void removeUser(String sessionId) {
+//		String username = sessionIdToUser.get(sessionId);
+//		if (username != null) {
+//			sessionIdToUser.remove(sessionId);
+//
+//			// check if same user has another active session
+//			boolean stillOnline = sessionIdToUser.containsValue(username);
+//
+//			if (!stillOnline) {
+//				onlineUsers.remove(username);
+//			}
+//
+//			broadcastUserList();
+//		}
+//	}
 
 	
 	
