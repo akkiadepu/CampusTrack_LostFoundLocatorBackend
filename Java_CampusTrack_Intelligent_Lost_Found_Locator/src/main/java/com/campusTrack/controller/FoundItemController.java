@@ -14,14 +14,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.campusTrack.dao.FoundItemDao;
+import com.campusTrack.dao.LostItemDao;
 import com.campusTrack.entity.FoundItem;
-
+import com.campusTrack.entity.FoundItemDTO;
+import com.campusTrack.entity.LostItem;
 import com.campusTrack.service.FoundItemService;
 import com.campusTrack.service.LostFoundUsersService;
 
 @RestController
 @RequestMapping("/lostfound/")
-@CrossOrigin(origins = "http://localhost:3000/", allowCredentials = "true")
+@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
 public class FoundItemController {
 	
 	@Autowired
@@ -32,6 +34,10 @@ public class FoundItemController {
 	
 	@Autowired
 	private FoundItemService foundService;
+	
+	@Autowired
+	private LostItemDao lostItemDao;
+	
 	
 	
 	 @PostMapping("/found")
@@ -69,5 +75,14 @@ public class FoundItemController {
 	    	String userId = service.getUser_id();
 	        return foundItemDao.getFoundItemsByUsername(userId);
 	    }
+	    
+	    @GetMapping("/found-id/{id}")
+	    public List<FoundItemDTO> getFoundItemsByLostItem(@PathVariable String id){
+	    	LostItem lostItem = lostItemDao.getLostItemById(id);
+	    	return foundService.collectFoundItems(lostItem);
+	    	
+	    }
+	    
+	    
 
 }

@@ -36,6 +36,21 @@ public class FoundItem {
 			this.foundDate = foundDate;
 			this.status = status;
 		}
+		
+		public FoundItem(FoundItemDTO foundItem) {
+			super();
+			this.foundItemId = foundItem.getFoundItemId();
+			this.foundItemName = foundItem.getFoundItemName();
+			this.color = foundItem.getColor();
+			this.brand = foundItem.getBrand();
+			this.category = foundItem.getCategory();
+			this.location = foundItem.getLocation();
+			this.username = foundItem.getUsername();
+			this.foundDate = foundItem.getFoundDate();
+			this.status = foundItem.getStatus();
+			
+		}
+		
 
 		public String getFoundItemId() {
 			return foundItemId;

@@ -22,7 +22,7 @@ import jakarta.servlet.http.HttpSession;
 
 @RestController
 @RequestMapping("/lostfound")
-@CrossOrigin(origins = "http://localhost:3000/", allowCredentials = "true")
+@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
 public class LoginController {
 
 	@Autowired
