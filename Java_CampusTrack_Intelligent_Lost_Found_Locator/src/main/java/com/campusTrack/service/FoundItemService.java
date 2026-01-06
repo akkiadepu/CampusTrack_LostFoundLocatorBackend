@@ -48,7 +48,6 @@ public class FoundItemService {
 		List<FoundItem> keywordResults = repository.searchByKeyword(keyword);
 		List<FoundItem> soundexResults = repository.fuzzySearchBySoundex(keyword);
 
-		
 		Map<String, FoundItemDTO> merged = new LinkedHashMap<String, FoundItemDTO>();
 		
 		keywordResults.forEach(f -> merged.put(f.getFoundItemId(), new FoundItemDTO(f)));
@@ -56,6 +55,7 @@ public class FoundItemService {
 		
 		return new ArrayList<FoundItemDTO>(merged.values());
 	}
+	
 	
 	public List<FoundItemDTO> collectFoundItems(LostItem lostItem){
 		

@@ -27,6 +27,15 @@ public class MatchItem {
 		this.lostUsername = lostUsername;
 		this.foundUsername = foundUsername;
 	}
+	
+	public MatchItem(MatchItemDTO matchItemDTO) {
+		super();
+		this.matchItemId = new MatchItemId(matchItemDTO.getLostItemId(),matchItemDTO.getFoundItemId());
+		this.itemName = matchItemDTO.getItemName();
+		this.category = matchItemDTO.getCategory();
+		this.lostUsername = matchItemDTO.getLostUserName();
+		this.lostUsername = matchItemDTO.getFoundUserName();
+	}
 
 	public MatchItemId getMatchItemId() {
 		return matchItemId;
