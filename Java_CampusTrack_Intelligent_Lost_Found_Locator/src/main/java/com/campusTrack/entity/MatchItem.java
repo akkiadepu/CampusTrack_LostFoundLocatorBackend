@@ -34,7 +34,7 @@ public class MatchItem {
 		this.itemName = matchItemDTO.getItemName();
 		this.category = matchItemDTO.getCategory();
 		this.lostUsername = matchItemDTO.getLostUserName();
-		this.lostUsername = matchItemDTO.getFoundUserName();
+		this.foundUsername = matchItemDTO.getFoundUserName();
 	}
 
 	public MatchItemId getMatchItemId() {

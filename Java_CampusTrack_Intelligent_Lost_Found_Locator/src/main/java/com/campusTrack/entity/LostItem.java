@@ -8,7 +8,6 @@ public class LostItem {
 
     @Id
     private String lostItemId;
-
     private String lostItemName;
     private String color;
     private String brand;

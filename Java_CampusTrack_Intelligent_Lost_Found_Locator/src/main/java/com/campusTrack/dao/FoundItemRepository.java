@@ -14,6 +14,7 @@ public interface FoundItemRepository extends JpaRepository<FoundItem, String> {
 
 	@Query("select max(foundItemId) from FoundItem")
 	public String getLastId();
+	
 
 	@Query("select a from FoundItem a where a.username = ?1")
 	public List<FoundItem> getfoundItemsByUsername (String username);

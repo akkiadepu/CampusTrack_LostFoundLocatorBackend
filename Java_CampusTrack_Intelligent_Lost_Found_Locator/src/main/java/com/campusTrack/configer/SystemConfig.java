@@ -47,13 +47,20 @@ public class SystemConfig {
 	        .cors(Customizer.withDefaults())
 	        .csrf(csrf -> csrf.disable())
 	        .authorizeHttpRequests(auth -> auth
-	            .requestMatchers("/lostfound/login/**").permitAll()
+//	            .requestMatchers("/lostfound/login/**").permitAll()
+	        	.requestMatchers("/lostfound/login/**", "/lostfound/register/**").permitAll()
 	            .requestMatchers("/lostfound/logout").permitAll()
 	            .requestMatchers("/lostfound/student/**").permitAll()
 	            .requestMatchers("/lostfound/ws/**").permitAll()
 	            .requestMatchers("/lostfound/*").permitAll()
+	            .requestMatchers("/lostfound/**").permitAll()
+	            .requestMatchers("/lostfound/match/**").permitAll()
 	            .anyRequest().authenticated()
 	        )
+	        .formLogin(form -> form
+	                .loginProcessingUrl("/lostfound/login")
+	                .permitAll()
+	            )
 	        .logout(logout -> logout
 	            .logoutUrl("/lostfound/logout")
 	            .invalidateHttpSession(true)
@@ -70,8 +77,10 @@ public class SystemConfig {
 	@Bean
 	public CorsConfigurationSource corsConfigurationSource() {
 	    CorsConfiguration config = new CorsConfiguration();
-	    config.setAllowedOrigins(List.of("http://localhost:5173"));
-	    config.setAllowedOrigins(List.of("http://localhost:3000"));
+	    config.setAllowedOrigins(List.of(
+	    	    "http://localhost:3000",
+	    	    "http://localhost:5173"
+	    	));
 //	    config.setAllowedOrigins(List.of("https://campus-track-my-lost-found-frontend.vercel.app"));
 	    config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
 	    config.setAllowedHeaders(List.of("*"));

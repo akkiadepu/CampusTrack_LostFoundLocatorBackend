@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.campusTrack.dao.LostItemDao;
+import com.campusTrack.entity.FoundItem;
 import com.campusTrack.entity.LostItem;
 import com.campusTrack.service.LostFoundUsersService;
 import com.campusTrack.service.LostItemService;
@@ -71,6 +72,11 @@ public class LostItemController {
     public List<LostItem> getLostItemsByUsername() {
     	String userId = service.getUser_id();
         return lostItemDao.getLostItemsByUsername(userId);
+    }
+    
+    @GetMapping("/lost/user/{username}")
+    public List<LostItem> getFoundItemsByUsername(@PathVariable String username) {
+        return lostItemDao.getLostItemsByUsername(username);
     }
     
 }

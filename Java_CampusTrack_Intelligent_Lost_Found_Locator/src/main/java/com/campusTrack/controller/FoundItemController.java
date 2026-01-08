@@ -2,7 +2,10 @@ package com.campusTrack.controller;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,7 +14,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+
 
 import com.campusTrack.dao.FoundItemDao;
 import com.campusTrack.dao.LostItemDao;
@@ -39,12 +47,15 @@ public class FoundItemController {
 	private LostItemDao lostItemDao;
 	
 	
-	
 	 @PostMapping("/found")
-	    public void saveFoundItem(@RequestBody FoundItem foundItem) {
+	    public void saveFoundItem(@RequestBody FoundItem foundItem ) {
+		 
+		 if (foundItem.getUsername() == null || foundItem.getUsername().trim().isEmpty()) {
+		        throw new RuntimeException("Username is missing");
+		    }
 	        foundItemDao.saveFoundItem(foundItem);   
 	    }
-
+	
 	    @GetMapping("/found")
 	    public List<FoundItem> getAllFoundItems() {
 	        return foundItemDao.getAllFoundItems();
@@ -83,6 +94,9 @@ public class FoundItemController {
 	    	
 	    }
 	    
-	    
+	    @GetMapping("/found/user/{username}")
+	    public List<FoundItem> getFoundItemsByUsername(@PathVariable String username) {
+	        return foundItemDao.getFoundItemsByUsername(username);
+	    }
 
 }

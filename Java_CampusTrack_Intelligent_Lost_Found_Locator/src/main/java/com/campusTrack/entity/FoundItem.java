@@ -8,7 +8,6 @@ public class FoundItem {
 
 	 	@Id
 	    private String foundItemId;
-
 	    private String foundItemName;
 	    private String color;
 	    private String brand;

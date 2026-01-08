@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import com.campusTrack.entity.FoundItem;
+import com.campusTrack.service.FoundItemService;
 
 @Service
 @Repository
@@ -14,6 +15,7 @@ public class FoundItemDaoImpl implements FoundItemDao {
 
 	@Autowired
 	private FoundItemRepository repository;
+
 	
 	@Override
 	public void saveFoundItem(FoundItem foundItem) {
