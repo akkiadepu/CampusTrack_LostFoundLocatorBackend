@@ -55,10 +55,6 @@ public class FoundItemDaoImpl implements FoundItemDao {
 		return repository.getfoundItemsByUsername(username);
 	}
 
-	@Override
-	public List<FoundItem> matchFoundItems(String ItemName, String category, String color, String brand,String location) {
-		// TODO Auto-generated method stub
-		 return repository.findPossibleMatches(ItemName, category, color, brand,location);
-	}
+	
 
 }
