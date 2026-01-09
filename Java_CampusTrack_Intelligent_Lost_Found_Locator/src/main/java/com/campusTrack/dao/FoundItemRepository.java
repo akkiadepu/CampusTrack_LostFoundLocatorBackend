@@ -38,5 +38,49 @@ public interface FoundItemRepository extends JpaRepository<FoundItem, String> {
 	       "SOUNDEX(category) = SOUNDEX(:keyword))",nativeQuery = true)
 	List<FoundItem> fuzzySearchBySoundex(String keyword);
 	
+//	@Query(value = """
+//			SELECT * FROM found_item
+//			WHERE status = false
+//			AND (
+//			    SOUNDEX(found_item_name) = SOUNDEX(:itemName)
+//			 OR SOUNDEX(color) = SOUNDEX(:color)
+//			 OR SOUNDEX(brand) = SOUNDEX(:brand)
+//			 OR SOUNDEX(category) = SOUNDEX(:category)
+//			 OR LOWER(found_item_name) LIKE LOWER(CONCAT('%', :itemName, '%'))
+//			 OR LOWER(color) LIKE LOWER(CONCAT('%', :color, '%'))
+//			 OR LOWER(brand) LIKE LOWER(CONCAT('%', :brand, '%'))
+//			 OR LOWER(category) LIKE LOWER(CONCAT('%', :category, '%'))
+//			)
+//			""", nativeQuery = true)
+//			List<FoundItem> matchFoundItems(
+//			    String itemName,
+//			    String category,
+//			    String color,
+//			    String brand
+//			);
+	
+	
+	@Query(value = """
+			SELECT * FROM found_item
+			WHERE status = false
+			AND (
+			    SOUNDEX(found_item_name) = SOUNDEX(:itemName)
+			 OR LOWER(found_item_name) LIKE LOWER(CONCAT('%', :itemName, '%'))
+			 OR SOUNDEX(category) = SOUNDEX(:category)
+			 OR SOUNDEX(color) = SOUNDEX(:color)
+			 OR SOUNDEX(brand) = SOUNDEX(:brand)
+			 OR SOUNDEX(location) = SOUNDEX(:location)
+			)
+			""", nativeQuery = true)
+			List<FoundItem> findPossibleMatches(
+			    String itemName,
+			    String category,
+			    String color,
+			    String brand,
+			    String location
+			);
+
+
+	
 	
 }

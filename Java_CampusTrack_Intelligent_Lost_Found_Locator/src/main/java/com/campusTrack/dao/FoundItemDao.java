@@ -15,4 +15,5 @@ public interface FoundItemDao {
 	public void updateFoundItem(FoundItem foundItem);
 	public String getLastId();
 	public List<FoundItem> getFoundItemsByUsername (String username);
+	public List<FoundItem> matchFoundItems(String lostItemName, String category, String color, String brand,String location);
 }

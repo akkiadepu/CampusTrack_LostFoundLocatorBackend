@@ -2,15 +2,18 @@ package com.campusTrack.controller;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.campusTrack.dao.MatchItemDao;
+import com.campusTrack.entity.FoundItemDTO;
 import com.campusTrack.entity.MatchItem;
 import com.campusTrack.entity.MatchItemDTO;
 import com.campusTrack.service.MatchItemService;
@@ -38,5 +41,9 @@ public class MatchItemController {
 		return matchItemDao.getAllMatchItems();
 	}
 	
+	@GetMapping("/match/{lostItemId}")
+	public List<FoundItemDTO> matchFoundItems(@PathVariable String lostItemId) {
+	    return service.findMatchingFoundItems(lostItemId);
+	}
 	
 }
