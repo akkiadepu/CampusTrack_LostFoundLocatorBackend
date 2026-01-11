@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -72,6 +73,7 @@ public class LoginController {
 	public String getRole() {
 		return service.getRole();
 	}
+	
 
 	@GetMapping("/student")
 	public List<Users> getAllStudents() {

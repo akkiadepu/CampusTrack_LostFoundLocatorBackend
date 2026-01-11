@@ -98,5 +98,6 @@ public class FoundItemController {
 	    public List<FoundItem> getFoundItemsByUsername(@PathVariable String username) {
 	        return foundItemDao.getFoundItemsByUsername(username);
 	    }
+	    	    
 
 }

@@ -3,6 +3,7 @@ package com.campusTrack.dao;
 import java.util.List;
 
 import com.campusTrack.entity.FoundItem;
+import com.campusTrack.entity.LostItem;
 
 
 public interface FoundItemDao {

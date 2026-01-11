@@ -82,7 +82,6 @@ public class LostFoundUsersService implements UserDetailsService {
 		return repository.getStudentsByUserName(username);
 		
 	}
-	
-	
+		
 
 }

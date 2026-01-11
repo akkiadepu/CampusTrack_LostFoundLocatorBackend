@@ -67,4 +67,6 @@ public class LostItemDaoImpl implements LostItemDao {
 		return repository.getLastId();
 	}
 
+	
+
 }

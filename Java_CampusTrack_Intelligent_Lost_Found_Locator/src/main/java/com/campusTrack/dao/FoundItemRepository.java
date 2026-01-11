@@ -16,9 +16,11 @@ public interface FoundItemRepository extends JpaRepository<FoundItem, String> {
 	public String getLastId();
 	
 
-	@Query("select a from FoundItem a where a.username = ?1")
+	
+	@Query("select a from FoundItem a where a.username = ?1 and a.status = false")
 	public List<FoundItem> getfoundItemsByUsername (String username);
 	
+
 	// Keyword search (LIKE for partial match)
 //	@Query("SELECT f FROM FoundItem f WHERE f.status=false and (" +
 //	       "LOWER(f.foundItemName) LIKE LOWER(CONCAT('%', :keyword, '%')) OR " +

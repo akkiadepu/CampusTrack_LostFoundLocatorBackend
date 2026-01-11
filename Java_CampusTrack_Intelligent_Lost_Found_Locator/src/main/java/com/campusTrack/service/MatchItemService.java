@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.campusTrack.dao.FoundItemDao;
 import com.campusTrack.dao.FoundItemRepository;
 import com.campusTrack.dao.LostItemDao;
+import com.campusTrack.dao.LostItemRepository;
 import com.campusTrack.dao.MatchItemDao;
 import com.campusTrack.dao.MatchItemRepository;
 import com.campusTrack.entity.FoundItem;
@@ -35,6 +36,9 @@ public class MatchItemService {
 	@Autowired
 	private FoundItemDao foundItemDao;
 	
+	@Autowired
+	private LostItemRepository lostItemRepository;
+	
 	public void updateLostFoundItems(MatchItemDTO matchItemDTO) {
 		
 		String lostItemId = matchItemDTO.getLostItemId();
@@ -48,7 +52,8 @@ public class MatchItemService {
 		
 		lostItemDao.saveLostItem(lostItem);
 		foundItemDao.saveFoundItem(foundItem);
-		
+				
+		 
 		
 	}
 	
