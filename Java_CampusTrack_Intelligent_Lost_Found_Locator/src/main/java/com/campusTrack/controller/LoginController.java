@@ -32,8 +32,7 @@ public class LoginController {
 	@Autowired
 	private EncoderConfig config;
 
-//	@Autowired
-//	private PasswordEncoder passwordEncoder;
+
 
 	@Autowired
 	private AuthenticationManager authenticationManager;

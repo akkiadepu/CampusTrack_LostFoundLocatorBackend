@@ -32,13 +32,7 @@ public class SystemConfig {
 		return configuration.getAuthenticationManager();
 	}
 
-//	@Bean
-//	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-//		http.csrf().disable()
-//				.authorizeHttpRequests((authorize) -> authorize.requestMatchers(HttpMethod.GET, "/lostfound/**")
-//						.permitAll().requestMatchers("/lostfound/**").permitAll().anyRequest().authenticated());
-//		return http.build();
-//	}
+
 
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {

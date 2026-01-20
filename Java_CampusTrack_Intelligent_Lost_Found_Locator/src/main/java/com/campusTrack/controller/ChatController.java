@@ -61,23 +61,6 @@ public class ChatController {
 		}
 	}
 	
-//	public void removeUser(String sessionId) {
-//		String username = sessionIdToUser.get(sessionId);
-//		if (username != null) {
-//			sessionIdToUser.remove(sessionId);
-//
-//			// check if same user has another active session
-//			boolean stillOnline = sessionIdToUser.containsValue(username);
-//
-//			if (!stillOnline) {
-//				onlineUsers.remove(username);
-//			}
-//
-//			broadcastUserList();
-//		}
-//	}
-
-	
 	
 	private void broadcastUserList() {
 		messagingTemplate.convertAndSend("/topic/users", onlineUsers);

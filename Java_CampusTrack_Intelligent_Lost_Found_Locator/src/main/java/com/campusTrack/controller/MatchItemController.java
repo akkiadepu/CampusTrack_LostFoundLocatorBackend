@@ -41,9 +41,6 @@ public class MatchItemController {
 		return matchItemDao.getAllMatchItems();
 	}
 	
-//	@GetMapping("/match/{lostItemId}")
-//	public List<FoundItemDTO> matchFoundItems(@PathVariable String lostItemId) {
-//	    return service.findMatchingFoundItems(lostItemId);
-//	}
+
 	
 }

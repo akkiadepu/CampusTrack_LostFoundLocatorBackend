@@ -39,21 +39,7 @@ public class LostItemDaoImpl implements LostItemDao {
 		repository.save(lostItem);
 	}
 
-//    @Override
-//    public String generateId() {
-//    	
-//    	String newId="";
-//        String Id = repository.getLastId();
-//        
-//        if (Id == null) {
-//            newId= "L100001";
-//        } else {
-//            int num = Integer.parseInt(Id.substring(1)) + 1;
-//            newId = "L" + num;
-//        }
-//        
-//        return newId;
-//    }
+
 
 	@Override
 	public List<LostItem> getLostItemsByUsername(String username) {
